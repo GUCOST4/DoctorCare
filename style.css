@@ -1,0 +1,834 @@
+/* ===GERAL==================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* INICIOU O CSS FAZENDO O RESET DAS CONFIGURAÇÕES PADRÕES DO NAVEGADOR */
+
+:root {
+  --primary-color: hsla(170, 100%, 26%, 1);
+  --secundary-color: hsla(148, 23%, 89%, 1);
+  --terciary-color: hsla(180, 14%, 97%, 1);
+  --quaternary-color: hsla(39, 100%, 97%, 1);
+  --quinquennial-color: white;
+  --color-text1: hsla(210, 11%, 15%, 1);
+  --color-text2: hsla(210, 9%, 31%, 1);
+  --color-text-menu: white;
+  --color-text-button: white;
+  --color-text-button-active: --primary-color;
+  --color-text-button-hover: hsla(170, 100%, 14%, 1);
+  --color-button-active: white;
+  --border-color: --secundary-color;
+
+  /* POR PADRÃO VAMOS COLOCAR NOSSA PALETA DE CORES DA RAIZ "ROOT" PARA FACILITAR ALTERAÇÕES DE VERSÕES E PADRÕES DE CORES DO SITE. */
+
+  --nav-height: 7.2rem;
+
+  /* CRIAMOS UMA VARIÁVEL COM O TAMANHO DO NAV. */
+
+  font-size: 62.5%;
+}
+
+/* PARA EFEITO DE NECESSIDADE DO USUÁRIO DAR ZOOM DE ACESSIBILIDADE E ALGUMAS FOONTES FICAREM "TRAVADAS" NAS MEDIDAS EM PIXEL FAREMOS UMA ADEQUAÇÃO DAS FONTES DE PIX PARA REM(FATOR DE REFERÊNCIA EM RELAÇÃO A MEDIDA RAIZ ROOT)
+QUANDO ESTIPULAMOS 100% NO ROOT 1 REM EQUIVALE A 16PX. 
+PARA FACILITAR VOU CONVERTER 1 REM PARA 10 PX NA RAIZ.
+SE 100% EQUIVALE A 16PX---X EQUIVALE 10PX= X= 62.5%
+LOGO MEU ROOT VALERÁ 62.5% QUE VALE 10PX, ASSIM SE QUISER FONTE COM 14 PX ELA TERÁ 1.4REM(10PX X 1.4 = 14PX)
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  text-align: center;
+  /* TEXT ALIGN: CENTER PARA CENTRALIZAR TODO O TEXTO */
+  overflow: overlay;
+  background-color: var(--terciary-color);
+}
+
+.wrapper {
+  width: min(50rem, 100%);
+  /* PEGUEI A REFERÊNCIA DE LARGURA DO MOBILE PRA "EMBRULHAR", SER UM CONTAINER. */
+  margin-right: auto;
+  margin-left: auto;
+  padding-inline: 2.4rem;
+  /* USADO PRA CRIAR ALINHAMENTO VERTICAL DE CADA LADO COM OFFSET DE 2.4REM */
+}
+
+ul {
+  list-style: none;
+}
+/* RESETANDO A LISTAS */
+
+section {
+  padding-block: 10rem;
+}
+/* LEMBRANDO QUE O PADDING BLOCK FA O PADDING TOP E BOTTOM AO MESMO TEMPO */
+
+section header h4 {
+  margin-bottom: 1.6rem;
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  /* FOI USADO HSLA(H É A COR, S É O NÍVEL DE SATURAÇÃO , L É QUANT. DE LUZ, A OPACIDADE) */
+  font-weight: 700;
+  letter-spacing: 0.08rem;
+  line-height: 150%;
+  text-transform: uppercase;
+}
+section header h2 {
+  font-size: 3rem;
+  line-height: 3.9rem;
+  color: var(--color-text1);
+  margin-bottom: 6rem;
+}
+section header h1 {
+  margin-top: 1.6rem;
+  font-size: 3.4rem;
+  color: color;
+  line-height: 130%;
+  font-weight: 700;
+}
+
+section .content p {
+  color: var(--color-text2);
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 150%;
+}
+
+.button {
+  padding: 1.6rem 3.2rem;
+  width: fit-content;
+  margin-top: 3.2rem;
+  margin-bottom: 6rem;
+  font-size: 1.4rem;
+  color: var(--color-text-button);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 4rem;
+  text-transform: uppercase;
+  /* TEXT-TRANSFORM: UPPERCASE PARA TORNAR TEXTO CAIXA ALTA */
+  font-weight: 700;
+  /* FORAM RETIRADAS DO GOOGLE FONTS DOIS PADRÕES DE FONTE DM SANS 400 (REGULAR) E 700 (BOLD) */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+  /* FOI USADO O DISPLAY FLEX PARA ALINHAR O TEXTO E A IMAGEM DO WP DENTRO DO BOTÃO. O DISPLAY FLEX FAZ COM QUE O POSICIONAMENTO DO TEXTO E DA IMAGEM SEJA RELATIVA AO BOTÃO. FOI USADO O ALIGN-ITENS PARA ALINHAMENTO NA HORIZONTAL E JUSTIFY PARA ALINHAR NA VERTICAL. O GAP PARA ESPAÇAR ELEMENTOS DE MESMO PAI, CRIANDO ESPAÇO ENTRE ICONE DO WP E TEXTO */
+
+  text-decoration: none;
+
+  transition: background 200ms;
+}
+
+.button:hover {
+  background-color: var(--color-text-button-hover);
+}
+
+img {
+  max-width: 100%;
+}
+
+/* ===HOME==================================== */
+
+#home {
+  padding-block: 0;
+  padding-top: calc(4.1rem + var(--nav-height));
+}
+
+#home::before {
+  /* ATALHO PARA CRIAR ALGO ANTES DO CONTEUDO DO HEADER. PODERIA SER FEITO "LÁ EM CIMA" OU SEJA NA SEQUÊNCIA MAS PARA FINS DIDÁTICOS FIZEMOS DESSA FORMA. */
+  content: '';
+  /* CONTENT ""- SIGNIFICA CONTEÚDO VAZIO. SE COLOCASSE ALGO DENTRO DA ÁSPAS APARECERIA O CONTEÚDO. */
+  width: 100%;
+  height: calc(76% + var(--nav-height));
+  background-color: var(--secundary-color);
+  display: block;
+  /* LEMBRANDO QUE TEM QUE SER APLICADO O DISPLAY BLOCK POIS ,DIFERENTE MENTE DO QUE ACONTECE COM O DISPLAY INLINE, PERMITE A CONFIGURAÇÃO DE DIMENSÕES. */
+  position: absolute;
+  /* FOI USADA O POSITION: ABSOLUTE PARA "DESTRAVAR" A REFERENCIA PELO HEADER PODENDO COLOCAR ONDE QUISER INDEPENDENTEMENTE DO HEADER */
+  top: 0;
+  left: 0;
+  z-index: -1;
+  /* Z-INDEX FOI USADO PRA "JOGAR" O ELEMENTO PRA TRÁS DO HEADER */
+}
+
+#home .button {
+  margin-inline: auto;
+}
+
+#home h4 {
+  margin-top: 4.1rem;
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  /* FOI USADO HSLA(H É A COR, S É O NÍVEL DE SATURAÇÃO , L É QUANT. DE LUZ, A OPACIDADE) */
+}
+#home h1 {
+  margin-top: 1.6rem;
+  font-size: 3.4rem;
+  color: color;
+  line-height: 130%;
+  font-weight: 700;
+}
+#home p {
+  margin-top: 2.4rem;
+  font-size: 1.8rem;
+  color: var(--color-text2);
+}
+
+#home img {
+  width: 26.4rem;
+  /* WIDHT USADO PARA MANTER A PROPORÇÃO DO SITE QUANDO APLICAR ZOOM DE ACESSIBILIDADE */
+  display: block;
+  /* DISPLAY: BLOCK USADO "LEBERAR" PARA PODER ADEQUAR A IMAGEM AO BOX INFERIOR */
+  margin-inline: auto;
+  object-position: 0 2rem;
+  /* O OBJECT-POSITION FOI USADO PARA MEXER NA IMAGEM CHEGANDO UM POUCO PRA BAIXO AFIM DE "ZERAR" COM A BOX INFERIOR. O PRIMEIRO VALOR MOVIMENTA NO EIXO X E O SEGUNDO NO EIXO Y, COMO NO X NÃO FOI PRECISO MEXER É ZERO NO Y TIVEMOS DE BAIXAR 20PX(OU NO CASO 2REM) */
+}
+
+/* h3 {
+  font-size: 4.8rem;
+  color: var(--color-text1);
+} */
+
+#home .blocks {
+  width: 100%;
+  height: 47rem;
+
+  background-color: var(--quaternary-color);
+  display: flex;
+  margin-inline: auto;
+
+  /* MARGIN INLINE USADO PARA ALINHAR OS ELEMENTOS NO EIXO X, SUBSTITUI O JÁ CONHECIDO MARGIN-LEFT E RIGHT: AUTO */
+
+  flex-direction: column;
+  justify-content: center;
+  /* JUSTIFY-CONTENT:CENTER ALINHAR OS ELEMNTOS TOMANDO POR BASE O CENTRO (CENTER) DE ACORDO COM O FLEX DIRECTION APLICADO: VERTICAL (COLUMN) OU HORIZONTAL (ROW) */
+  gap: 6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.6rem;
+}
+
+#home .block h3 {
+  font-size: 4.8rem;
+  color: var(--color-text1);
+  line-height: 130%;
+  margin-bottom: 0.4rem;
+}
+
+#home .block p {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 1.6rem;
+  line-height: 150%;
+}
+/* FOI USADO O MARGIN ZERO AO REDOR DO P DO BLOCK PARA PERMITIR QUE O TEXTO SE APROXIME DOS NÚMEROS */
+
+/* ===NAVIGATION==================================== */
+nav {
+  display: flex;
+
+  /* padding-right: 2.4rem;
+  padding-left: 2.4rem; */
+  /* ATENÇÃO PODERIA SIMPLIFICAR FAZENDO UM PADDING-INLANE:2.4REM QUE JÁ DARIA O ESPAÇO DE AMBS OS LADOS */
+  /* padding-top: 1.6rem;
+  padding-bottom: 1.6rem; */
+  /* ATENÇÃO PODERIA SIMPLIFICAR FAZENDO UM PADDING-BLOCK:1.6REM QUE JÁ DARIA O ESPAÇO DE AMBOS OS LADOS CIMA E BAIXO */
+
+  /* ATENÇÃO: PODERIA AINDA FAZER UM SHORTHANDS COM PADDING: 1.6REM 2.4REM */
+  position: fixed;
+  /* PARA MANTER A BARRA DO MENU FIXA QUANDO ROLAR O SCROLL USO O POSITION FIXED, PORÉM ELE ACABA RESETANDO AS CONFIGURAÇÕES DE POSICIONAMENTO QUE DEVERÃO SER REFEITAS. */
+  top: 0;
+  /* left: 50%;
+  transform: translateX(-50%); */
+  /* width: 100vw; */
+  /* ATENÇÃO: APOS O POSITION FIXED É NECESSÁRIO RECONFIGURAR A POSIÇÃO DA NAV O TOP ZERO É PARA COLOCAR O ELEMENTO EM CIMA. O LEFT 50% COLOCA A BASE INICIAL DO ELEMENTO Á 50% DA TELA OUSEJA NO MEIO, PORÉM É NECESSÁRIO FICAR O MEIO DO ELEMENTO NO MEIO DA TELA, PORTANTO 50% DO ELEMTNTO EM X, POR ISSO USOU O TRANSFORM X. */
+
+  height: var(--nav-height);
+  /* ALTURA DO NAV DEFINIDA COM VARIÁVEL NO ROOT */
+  width: 100vw;
+
+  z-index: 100;
+}
+nav .wrapper {
+  /* IMPORTANTE: O ESPAÇO ANTES DO .WRAPPER É PROPOSITAL. INDICA QUE É FILHO DA NAV CLASS="SCROLL". SEM O ESPAÇAMENTO NÃO FUNCIONOU. */
+  display: flex;
+  align-items: center;
+  /* ALIGN-ITNES PARA ALINHAR HORIZONTALMENTE TENDO POR BASE O CENTRO(CENTER) */
+  justify-content: space-between;
+  /* SE FOSSE CENTER OS ITENS SE APROXIMARIAM DO CENTRO. O SPACE BTWEN DISTA UMA MAX ESPAÇO ENTRE ELES */
+}
+
+nav.scroll {
+  background: var(--primary-color);
+}
+
+nav.scroll .logo path {
+  /* PARA MUDAR A COR DA LOGO PARA BRANCO PRECISO ALTERAR O CÓDIGO DO SVG IDENTIFIQEUI EM QUAL SVG (PRIMEIRO OU SEGUNDO) REPRESENTA A PALAVRA DOCTOR CARE E FAÇO A ALTERAÇÃO PRA COR QUE DESEJO. LEMBRANDO QUE CADA PATH CORRESPONDE A UMA LETRA, COMO QUERO ALTERAR DE TODAS INDIQUEI O PATH DE FORMA GENÉRICA. */
+  fill: white;
+}
+
+nav.scroll button path {
+  stroke: white;
+  /* NESSE CASO É LINHA (STROKE) E NÃO LETRA (FILL) */
+}
+
+nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  /* MAOZINHA QD PASSA NO BOTÃO */
+}
+nav .menu,
+nav .close-menu {
+  position: fixed;
+}
+
+/* ===MENU EXPANDED================================= */
+
+body.menu-expanded {
+  overflow: hidden;
+}
+
+body.menu-expanded > :not(nav) {
+  /* COMANDO QUE PEGA TODOS OS FILHOS DO PRIMEIRO NÍVEL exceto o nav, OU SEJA QD APARECER A NAVEGAÇÃO APAERECE APENAS OS ALEMENTOS DO NAV SEM SOBREPOSIÇÕES*/
+  display: none;
+}
+
+.menu,
+.close-menu,
+body.menu-expanded .open-menu {
+  opacity: 0;
+  visibility: hidden;
+}
+/* QUANDO O MENU e  O BOTÃO DE FECCHAR ESTIVER NORMAL SEM O MENU EXPANDED HAVERÁ OPACIDADE E ESCONDIDO(VISIBILITY) */
+
+body.menu-expanded .menu,
+body.menu-expanded .close-menu {
+  opacity: 1;
+  visibility: visible;
+}
+/* JÁ SE O MENU e  O BOTÃO DE FECCHAR ESTIVER ATIVADO COM O MENU EXPANDED HAVERÁ RETIRA A OPACIDADE E APARECE(VISIBILITY) */
+
+.menu {
+  transform: translateY(100%);
+}
+/* CRIADO PARA FAZER EFEITO DO MENU SUBIR DE BAIXO PRA CIMA. OU SEJA ANTES DO MENU EXPANDIDO ELE SE ESCONDE 100%. APÓS O MENU EXPANDED ATIVAR O TRANSLATE É ZERO O TRANSFORMA 300MS É O TEMPO DO EFEITO. */
+
+body.menu-expanded .menu {
+  /* SIGNIFICA QUE QUANDO O BODY TIVER  A CLASSE MENU-EXPANDED ELE VAI BUSCAR O MENU, ACHANDO O MENU APLICARÁ AS DIRETRIZES ABAIXO O MENU */
+
+  top: 0;
+  left: 0;
+  background: var(--primary-color);
+
+  width: 100vw;
+  height: 100vh;
+
+  padding-top: var(--nav-height);
+
+  transition: transform 350ms;
+  transform: translateY(0);
+}
+
+.menu ul:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+
+  margin-top: 6rem;
+  font-size: 2.4rem;
+  line-height: 3.1rem;
+  font-weight: 700;
+}
+/* NTH-CHILD ESCOLHE O FILHO QUE QUISER NO CASO 1º FILHO TIPO UL */
+
+.menu ul li a {
+  color: var(--color-text-menu);
+  text-decoration: none;
+}
+
+.menu .button {
+  background: var(--color-button-active);
+  border-radius: 4rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  /* TEXT DECORATION: NONE PARA RETIRAR  SUBLINHADO DO LINK */
+  color: var(--primary-color);
+  display: inline-block;
+
+  padding: 1.6rem 3.2rem;
+  margin-top: 4.8rem;
+  margin-bottom: 8rem;
+}
+
+.menu .button:hover {
+  background-color: var(--primary-color);
+  color: var(--quinquennial-color);
+
+  /* filter: brightness(1.2); */
+  border: 1px solid white;
+}
+
+.social-links {
+  display: flex;
+  gap: 3.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+body.menu-expanded .logo,
+body.menu-expanded button {
+  position: relative;
+  z-index: 10;
+}
+
+body.menu-expanded .logo path {
+  /* PARA MUDAR A COR DA LOGO PARA BRANCO PRECISO ALTERAR O CÓDIGO DO SVG IDENTIFIQEUI EM QUAL SVG (PRIMEIRO OU SEGUNDO) REPRESENTA A PALAVRA DOCTOR CARE E FAÇO A ALTERAÇÃO PRA COR QUE DESEJO. LEMBRANDO QUE CADA PATH CORRESPONDE A UMA LETRA, COMO QUERO ALTERAR DE TODAS INDIQUEI O PATH DE FORMA GENÉRICA. */
+  fill: white;
+}
+
+body.menu-expanded button path {
+  stroke: white;
+  /* NESSE CASO É LINHA (STROKE) E NÃO LETRA (FILL) */
+}
+
+/* ===SERVICES==================================== */
+
+#services header h2 {
+  margin-bottom: 6rem;
+}
+
+#services .cards {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+#services .card {
+  padding: 2.4rem;
+  text-align: left;
+  background: var(--quinquennial-color);
+  border: 1px solid var(--secundary-color);
+  border-radius: 0.6rem;
+}
+
+#services .card h3 {
+  margin-block: 1.6rem;
+}
+/* LEMBRANDO QUE O MARGIN BLOCK SUBSTITUI O MARGIN TOP E MARGIN BOTTOM  */
+
+/* ===ABOUT==================================== */
+
+#about {
+  align-items: left;
+  background-color: var(--quaternary-color);
+}
+
+#about header h2 {
+  margin-bottom: 2.4rem;
+}
+
+#about content p {
+  margin-top: 2.4rem;
+  margin-bottom: 6rem;
+}
+
+/* ===CONTACT==================================== */
+
+#contact {
+  text-align: left;
+}
+
+#contact header {
+  margin-bottom: 3.2rem;
+}
+
+#contact ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  margin-bottom: 3.2rem;
+}
+
+#contact ul li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* ===FOOTER==================================== */
+
+footer {
+  background-color: var(--primary-color);
+  padding-block: 6rem;
+  padding-left: 2.4rem;
+
+  text-align: left;
+  color: var(--color-text-menu);
+}
+
+footer .logo {
+  display: inline-block;
+  margin-bottom: 2.4rem;
+}
+
+footer .logo svg {
+  width: 23.6rem;
+  height: 3.1rem;
+}
+
+footer .logo path {
+  fill: white;
+}
+
+footer p {
+  color: var(--quaternary-color);
+  line-height: 2;
+
+  margin-bottom: 3.2rem;
+}
+
+footer .social-links {
+  justify-content: flex-start;
+  /* FKEX START ALINHA COM O INÍCIO DO  DE CIMA */
+}
+
+/* ===BACK TO TOP BUTTON==================================== */
+
+#backToTopButton {
+  position: fixed;
+  bottom: 1rem;
+  /* SALTOU O BOTÃO PRA CIMA DE BAIXO PRA CIMA 1 REM */
+  right: 2.5rem;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(100%);
+  transition: 200ms;
+  /* PARA O BOTÃO APARECER "DEVAGAR" */
+}
+
+#backToTopButton.show {
+  /* OU SEJA QD O BACKTOTOP BUTTON ESTIVER COM A CLASSE .SHOW ELE APARECERÁ. QD TIVER "NORMAL" VICARÁ ESCONDIDO(APOCITY:0, VISIBILITY:HIDDDEN) */
+
+  opacity: 1;
+  visibility: visible;
+
+  transform: translateY(0);
+}
+
+/* ===RESPONSIVIDADE==================================== */
+
+@media (min-width: 1024px) {
+  /* APLICAR A QUEBRA PRA CONFIGURAÇÃO DE LAPTOP (1024PX) QUANDO O MINIMO DA LARGURA FOR 1024PX. */
+
+  /* reset */
+  nav#navigation .wrapper * {
+    margin: 0;
+    padding: 0;
+    visibility: initial;
+    display: initial;
+    opacity: initial;
+    flex-direction: initial;
+    position: initial;
+    font-size: initial;
+    transform: initial;
+    color: initial;
+    background-color: initial;
+    filter: initial;
+  }
+
+  /* geral */
+  body {
+    overflow: auto;
+    /* FEITO PRA IGUALAR O ESPAÇO POIS ANTES A BARRA DO SCROLL TAVA CUMENDO UM POUCO DA LARGURA LATERAL */
+  }
+
+  .wrapper {
+    width: min(112rem, 100%);
+    display: grid;
+  }
+
+  .colA {
+    grid-area: A;
+  }
+  .colB {
+    grid-area: B;
+  }
+
+  section {
+    padding-block: 16rem;
+  }
+
+  section header h2 {
+    font-size: 4rem;
+    line-height: 5.2rem;
+  }
+
+  /* navigation */
+  nav#navigation .wrapper * {
+    margin: 0;
+    padding: 0;
+    visibility: initial;
+    display: initial;
+    opacity: initial;
+    flex-direction: initial;
+    position: initial;
+    font-size: initial;
+    font-weight: initial;
+    transform: initial;
+    color: initial;
+    background-color: initial;
+    filter: initial;
+  }
+
+  nav#navigation .close-menu,
+  nav#navigation .open-menu,
+  nav#navigation .social-links {
+    display: none;
+  }
+
+  nav#navigation .menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+  }
+
+  nav#navigation .menu ul:nth-child(1) {
+    display: flex;
+    gap: 3.2rem;
+  }
+
+  nav#navigation .menu ul li a {
+    color: var(--primary-color);
+    opacity: 0.7;
+  }
+  nav#navigation .menu a.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2.4rem;
+
+    border: 1px solid var(--primary-color);
+    border-radius: 4rem;
+
+    color: var(--primary-color);
+
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    text-transform: uppercase;
+  }
+
+  nav#navigation .menu a.button:hover {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+  }
+
+  nav#navigation.scroll .menu ul li a {
+    color: var(--terciary-color);
+    opacity: 0.6;
+  }
+
+  nav#navigation.scroll .menu a.button {
+    border-color: white;
+    color: white;
+  }
+
+  nav#navigation .menu li a {
+    transition: opacity 0.4s;
+  }
+
+  nav#navigation .menu li a.active,
+  nav#navigation .menu li a:hover {
+    opacity: 1;
+    font-weight: 700;
+  }
+  nav#navigation .menu li a::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background-color: var(--primary-color);
+
+    position: relative;
+    bottom: -2rem;
+    left: -0.5rem;
+
+    display: block;
+
+    transition: width 0.2s;
+  }
+
+  nav#navigation.scroll .menu li a::after {
+    background-color: white;
+  }
+  nav#navigation .menu li a.active::after,
+  nav#navigation .menu li a:hover::after {
+    padding-inline: 0.8rem;
+    width: 100%;
+  }
+
+  nav#navigation.scroll .menu li a.active,
+  nav#navigation.scroll .menu li a:hover {
+    opacity: 1;
+  }
+
+  nav#navigation.scroll .menu a.button.active,
+  nav#navigation.scroll .menu a.button:hover {
+    background-color: var(--primary-color);
+    filter: brightness(1.3);
+    border: none;
+  }
+
+  /* home */
+  #home::before {
+    height: calc(96% - var(--nav-height));
+  }
+
+  #home {
+    padding-top: var(--nav-height);
+  }
+
+  #home .wrapper {
+    grid-template-columns: 60.5rem 1fr;
+    /* CADA FILHO OCUPA 50% DE ÁREA DE COLUNA, CASO FOSSEM 3 PODERIA TROCAR A SINTAXE PARA (1fr 1 fr 1fr)OU SEJA CADA UM OCUPA 1 FRAÇÃO DE 3 */
+    grid-template-areas:
+      'A B'
+      'C C';
+    /* OU SEJA DE TRÊ FILHO O A OCUPARÁ UM PEDAÇO EM CIMA O B TAMBÉM E O C FICARÁ TODO EM BAIXO */
+  }
+
+  #home .colA {
+    text-align: left;
+    align-self: center;
+  }
+
+  #home h1 {
+    font-size: 5.2rem;
+  }
+
+  #home .content p {
+    font-size: 1.8rem;
+  }
+
+  #home .blocks {
+    grid-area: C;
+    flex-direction: row;
+    padding: 6rem;
+    gap: 0;
+    height: 21rem;
+  }
+
+  #home .blocks .block + .block {
+    /* SELECIONA O BLOCK QUE ANTERIOR A ELE TEM OUTRO BLOCK(NO CASO É O +15 E O + 10 POIS O 3500 NÃO TEM ELEMENTO STAT ANTES DELE. ISSO FOI FEITO PRA COLOCAR A um elemento vertical ENTRE ELES. */
+    border-left: 1px solid var(--primary-color);
+  }
+  /* DEFINE QUEM OCUPA CADA ÁREA */
+
+  #home .blocks .block {
+    flex: 1;
+  }
+
+  #home .button {
+    margin: 0;
+    margin-top: 5rem;
+  }
+  #home img {
+    width: 42rem;
+    margin-inline: auto;
+    object-position: 0 3rem;
+  }
+
+  /* SERVICES*/
+
+  #services h2 {
+    width: 47rem;
+    margin-inline: auto;
+  }
+
+  #services .cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem;
+  }
+
+  #services .card {
+    width: 30%;
+    flex-grow: 1;
+  }
+
+  /* ABOUT*/
+
+  #about .wrapper {
+    grid-template-columns: 48rem 1fr;
+    grid-template-areas: 'B A';
+    gap: 6.7rem;
+  }
+
+  #about .colA {
+    align-self: center;
+  }
+
+  #about .content p {
+    margin-bottom: 0;
+  }
+
+  /* CONTACT*/
+  #contact .wrapper {
+    grid-template-columns: 1fr 57.5rem;
+    grid-template-areas: 'A B';
+    gap: 6.7rem;
+  }
+  #contact h2 {
+    width: 40.4rem;
+  }
+
+  #contact .colA {
+    align-self: center;
+  }
+
+  #contact .content p {
+    margin-bottom: 0;
+  }
+
+  /* FOOTER*/
+  footer {
+    padding-block: 8rem;
+  }
+
+  footer .wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'A B';
+  }
+  footer .colA {
+    align-self: center;
+  }
+
+  footer .colB {
+    align-self: center;
+    justify-self: flex-end;
+  }
+
+  footer p {
+    margin-bottom: 0;
+  }
+}
